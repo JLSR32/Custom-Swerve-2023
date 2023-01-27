@@ -13,6 +13,7 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.commands.DrivetrainCommand;
 
 public class Drivetrain extends SubsystemBase {
   public final SwerveModule frontLeft;
@@ -170,4 +171,8 @@ public class Drivetrain extends SubsystemBase {
 //    SmartDashboard.putNumber("Front left target state", frontLeft.getState().angle.getRadians());
 
   }
+
+public Object InstantCommand(DrivetrainCommand drivetrainCommand) {
+    return null;
+}
 }

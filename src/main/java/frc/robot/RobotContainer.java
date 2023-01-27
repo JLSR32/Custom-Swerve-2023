@@ -2,13 +2,10 @@ package frc.robot;
 
 import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.controller.ProfiledPIDController;
-import edu.wpi.first.math.trajectory.Trajectory;
-import edu.wpi.first.math.trajectory.TrapezoidProfile;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
+import frc.robot.commands.Autos;
 import frc.robot.commands.DrivetrainCommand;
 import frc.robot.subsystems.Drivetrain;
 
@@ -39,26 +36,26 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    PIDController Xcontrlor = new PIDController(Constants.Auto.K_XController,0,0);
-    PIDController YControlor = new PIDController(Constants.Auto.K_YController,0,0);
-    ProfiledPIDController thetaController = new ProfiledPIDController(
-            Constants.Auto.K_RController, 0,0, new TrapezoidProfile.Constraints(4,3)
-    );
+    // PIDController Xcontrlor = new PIDController(Constants.Auto.K_XController,0,0);
+    // PIDController YControlor = new PIDController(Constants.Auto.K_YController,0,0);
+    // ProfiledPIDController thetaController = new ProfiledPIDController(
+    //         Constants.Auto.K_RController, 0,0, new TrapezoidProfile.Constraints(4,3)
+    // );
 
-    thetaController.enableContinuousInput(-Math.PI, Math.PI);
-    Trajectory PathTrajectory = new Trajectory(Path.getStates());
+    // thetaController.enableContinuousInput(-Math.PI, Math.PI);
+    // Trajectory PathTrajectory = new Trajectory(Path.getStates());
 
-    SwerveControllerCommand swerveControllerCommand = new SwerveControllerCommand(
-            PathTrajectory,
-            m_drivetrain::getpos,
-            Constants.m_kinematics,
-            Xcontrlor,
-            YControlor,
-            thetaController,
-            m_drivetrain::setModuleStates,
-            m_drivetrain
-    );
-    return swerveControllerCommand;
-
+    // SwerveControllerCommand swerveControllerCommand = new SwerveControllerCommand(
+    //         PathTrajectory,
+    //         m_drivetrain::getpos,
+    //         Constants.m_kinematics,
+    //         Xcontrlor,
+    //         YControlor,
+    //         thetaController,
+    //         m_drivetrain::setModuleStates,
+    //         m_drivetrain
+    // );
+    // return swerveControllerCommand;
+    return Autos.forward(m_drivetrain);
   }
 }
